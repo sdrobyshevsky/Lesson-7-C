@@ -1,8 +1,3 @@
-class Calculator
-{
-    static void Main()
-    {
-        // Выводим приветствие и объяснение работы программы
         Console.WriteLine("Добро пожаловать в программу-калькулятор!");
         Console.WriteLine("Введите выражение вида a + b, a - b, a / b, a * b, чтобы вычислить его.");
 
@@ -45,5 +40,4 @@ class Calculator
 
         // Выводим результат на экран
         Console.WriteLine("Результат: " + result);
-    }
-}
+    
