@@ -73,34 +73,78 @@
 // В конце мы возвращаем значение exitCount, которое представляет количество выходов в лабиринте.
 
 
-csharp
-static int HasExit(int startI, int startJ, int[,] l)
-{
-if (startI < 0 || startI >= l.GetLength(0) || startJ < 0 || startJ >= l.GetLength(1))
-{
-return 0;
-}
+// csharp
+// static int HasExit(int startI, int startJ, int[,] l)
+// {
+// if (startI < 0 || startI >= l.GetLength(0) || startJ < 0 || startJ >= l.GetLength(1))
+// {
+// return 0;
+// }
 
-if (l[startI, startJ] == 1)
-{
-return 0;
-}
+// if (l[startI, startJ] == 1)
+// {
+// return 0;
+// }
 
-if ((startI == 0 || startI == l.GetLength(0) - 1 || startJ == 0 || startJ == l.GetLength(1) - 1) && l[startI, startJ] == 0)
-{
-return 1;
-}
+// if ((startI == 0 || startI == l.GetLength(0) - 1 || startJ == 0 || startJ == l.GetLength(1) - 1) && l[startI, startJ] == 0)
+// {
+// return 1;
+// }
 
-l[startI, startJ] = 1;
+// l[startI, startJ] = 1;
 
-return HasExit(startI + 1, startJ, l) + HasExit(startI - 1, startJ, l) + HasExit(startI, startJ + 1, l) + HasExit(startI, startJ - 1, l);
-}
+// return HasExit(startI + 1, startJ, l) + HasExit(startI - 1, startJ, l) + HasExit(startI, startJ + 1, l) + HasExit(startI, startJ - 1, l);
+// }
 
 
 // Пример вызова метода для данного лабиринта:
 
-int result = HasExit(1, 0, labirynth1);
-Console.WriteLine("Total exits in the labyrinth: " + result);
+// int result = HasExit(1, 0, labirynth1);
+// Console.WriteLine("Total exits in the labyrinth: " + result);
 
 
 // Метод `HasExit` рекурсивно проверяет все возможные направления движения из текущей точки в лабиринте и возвращает количество выходов из лабиринта.
+
+
+int[,] labirynth1 = new int[,]
+{
+{1, 1, 1, 1, 1, 1, 1 },
+{1, 0, 0, 0, 0, 0, 1 },
+{1, 0, 1, 1, 1, 0, 1 },
+{0, 0, 0, 0, 1, 0, 0 },
+{1, 1, 0, 0, 1, 1, 1 },
+{1, 1, 1, 0, 1, 1, 1 },
+{1, 1, 1, 0, 1, 1, 1 }
+};
+
+Сигнатура метода:
+
+static int HasExit(int startI, int startJ, int[,] l)
+
+{
+int count = 0;
+HasExit(startI, startJ, l, ref count);
+return count;
+}
+
+static void HasExit(int i, int j, int[,] l, ref int count)
+{
+if (i < 0 || i >= l.GetLength(0) || j < 0 || j >= l.GetLength(1))
+{
+return;
+}
+
+if (l[i, j] == 0)
+{
+if (i == 0 || i == l.GetLength(0) - 1 || j == 0 || j == l.GetLength(1) - 1)
+{
+count++;
+}
+
+l[i, j] = 2;
+HasExit(i + 1, j, l, ref count);
+HasExit(i - 1, j, l, ref count);
+HasExit(i, j + 1, l, ref count);
+HasExit(i, j - 1, l, ref count);
+}
+}
