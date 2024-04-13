@@ -73,37 +73,37 @@
 // В конце мы возвращаем значение exitCount, которое представляет количество выходов в лабиринте.
 
 
-// csharp
-// static int HasExit(int startI, int startJ, int[,] l)
-// {
-// if (startI < 0 || startI >= l.GetLength(0) || startJ < 0 || startJ >= l.GetLength(1))
-// {
-// return 0;
-// }
+csharp
+static int HasExit(int startI, int startJ, int[,] l)
+{
+if (startI < 0 || startI >= l.GetLength(0) || startJ < 0 || startJ >= l.GetLength(1))
+{
+return 0;
+}
 
-// if (l[startI, startJ] == 1)
-// {
-// return 0;
-// }
+if (l[startI, startJ] == 1)
+{
+return 0;
+}
 
-// if ((startI == 0 || startI == l.GetLength(0) - 1 || startJ == 0 || startJ == l.GetLength(1) - 1) && l[startI, startJ] == 0)
-// {
-// return 1;
-// }
+if ((startI == 0 || startI == l.GetLength(0) - 1 || startJ == 0 || startJ == l.GetLength(1) - 1) && l[startI, startJ] == 0)
+{
+return 1;
+}
 
-// l[startI, startJ] = 1;
+l[startI, startJ] = 1;
 
-// return HasExit(startI + 1, startJ, l) + HasExit(startI - 1, startJ, l) + HasExit(startI, startJ + 1, l) + HasExit(startI, startJ - 1, l);
-// }
-
-
-// Пример вызова метода для данного лабиринта:
-
-// int result = HasExit(1, 0, labirynth1);
-// Console.WriteLine("Total exits in the labyrinth: " + result);
+return HasExit(startI + 1, startJ, l) + HasExit(startI - 1, startJ, l) + HasExit(startI, startJ + 1, l) + HasExit(startI, startJ - 1, l);
+}
 
 
-// Метод `HasExit` рекурсивно проверяет все возможные направления движения из текущей точки в лабиринте и возвращает количество выходов из лабиринта.
+Пример вызова метода для данного лабиринта:
+
+int result = HasExit(1, 0, labirynth1);
+Console.WriteLine("Total exits in the labyrinth: " + result);
+
+
+Метод `HasExit` рекурсивно проверяет все возможные направления движения из текущей точки в лабиринте и возвращает количество выходов из лабиринта.
 
 
 {
